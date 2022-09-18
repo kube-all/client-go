@@ -28,6 +28,8 @@ type Interface interface {
 	ClusterDashboards() ClusterDashboardInformer
 	// ProjectArchitectures returns a ProjectArchitectureInformer.
 	ProjectArchitectures() ProjectArchitectureInformer
+	// Workloads returns a WorkloadInformer.
+	Workloads() WorkloadInformer
 	// WorkspaceDashboards returns a WorkspaceDashboardInformer.
 	WorkspaceDashboards() WorkspaceDashboardInformer
 }
@@ -51,6 +53,11 @@ func (v *version) ClusterDashboards() ClusterDashboardInformer {
 // ProjectArchitectures returns a ProjectArchitectureInformer.
 func (v *version) ProjectArchitectures() ProjectArchitectureInformer {
 	return &projectArchitectureInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// Workloads returns a WorkloadInformer.
+func (v *version) Workloads() WorkloadInformer {
+	return &workloadInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
 // WorkspaceDashboards returns a WorkspaceDashboardInformer.

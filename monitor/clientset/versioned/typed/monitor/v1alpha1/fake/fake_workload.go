@@ -21,7 +21,7 @@ package fake
 import (
 	"context"
 
-	v1alpha1 "github.com/kube-all/api/metrics/v1alpha1"
+	v1alpha1 "github.com/kube-all/api/monitor/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	labels "k8s.io/apimachinery/pkg/labels"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -32,13 +32,13 @@ import (
 
 // FakeWorkloads implements WorkloadInterface
 type FakeWorkloads struct {
-	Fake *FakeMetricsV1alpha1
+	Fake *FakeMonitorV1alpha1
 	ns   string
 }
 
-var workloadsResource = schema.GroupVersionResource{Group: "metrics.kubeall.com", Version: "v1alpha1", Resource: "workloads"}
+var workloadsResource = schema.GroupVersionResource{Group: "monitor.kubeall.com", Version: "v1alpha1", Resource: "workloads"}
 
-var workloadsKind = schema.GroupVersionKind{Group: "metrics.kubeall.com", Version: "v1alpha1", Kind: "Workload"}
+var workloadsKind = schema.GroupVersionKind{Group: "monitor.kubeall.com", Version: "v1alpha1", Kind: "Workload"}
 
 // Get takes name of the workload, and returns the corresponding workload object, and an error if there is any.
 func (c *FakeWorkloads) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.Workload, err error) {

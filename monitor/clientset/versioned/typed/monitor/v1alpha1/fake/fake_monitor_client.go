@@ -36,6 +36,10 @@ func (c *FakeMonitorV1alpha1) ProjectArchitectures(namespace string) v1alpha1.Pr
 	return &FakeProjectArchitectures{c, namespace}
 }
 
+func (c *FakeMonitorV1alpha1) Workloads(namespace string) v1alpha1.WorkloadInterface {
+	return &FakeWorkloads{c, namespace}
+}
+
 func (c *FakeMonitorV1alpha1) WorkspaceDashboards() v1alpha1.WorkspaceDashboardInterface {
 	return &FakeWorkspaceDashboards{c}
 }

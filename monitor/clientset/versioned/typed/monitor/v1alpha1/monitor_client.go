@@ -30,6 +30,7 @@ type MonitorV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	ClusterDashboardsGetter
 	ProjectArchitecturesGetter
+	WorkloadsGetter
 	WorkspaceDashboardsGetter
 }
 
@@ -44,6 +45,10 @@ func (c *MonitorV1alpha1Client) ClusterDashboards() ClusterDashboardInterface {
 
 func (c *MonitorV1alpha1Client) ProjectArchitectures(namespace string) ProjectArchitectureInterface {
 	return newProjectArchitectures(c, namespace)
+}
+
+func (c *MonitorV1alpha1Client) Workloads(namespace string) WorkloadInterface {
+	return newWorkloads(c, namespace)
 }
 
 func (c *MonitorV1alpha1Client) WorkspaceDashboards() WorkspaceDashboardInterface {

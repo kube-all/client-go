@@ -22,10 +22,10 @@ import (
 	"context"
 	time "time"
 
-	metricsv1alpha1 "github.com/kube-all/api/metrics/v1alpha1"
-	versioned "github.com/kube-all/client-go/metrics/clientset/versioned"
-	internalinterfaces "github.com/kube-all/client-go/metrics/informers/externalversions/internalinterfaces"
-	v1alpha1 "github.com/kube-all/client-go/metrics/listers/metrics/v1alpha1"
+	monitorv1alpha1 "github.com/kube-all/api/monitor/v1alpha1"
+	versioned "github.com/kube-all/client-go/monitor/clientset/versioned"
+	internalinterfaces "github.com/kube-all/client-go/monitor/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/kube-all/client-go/monitor/listers/monitor/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -62,16 +62,16 @@ func NewFilteredWorkloadInformer(client versioned.Interface, namespace string, r
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.MetricsV1alpha1().Workloads(namespace).List(context.TODO(), options)
+				return client.MonitorV1alpha1().Workloads(namespace).List(context.TODO(), options)
 			},
 			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
 				if tweakListOptions != nil {
 					tweakListOptions(&options)
 				}
-				return client.MetricsV1alpha1().Workloads(namespace).Watch(context.TODO(), options)
+				return client.MonitorV1alpha1().Workloads(namespace).Watch(context.TODO(), options)
 			},
 		},
-		&metricsv1alpha1.Workload{},
+		&monitorv1alpha1.Workload{},
 		resyncPeriod,
 		indexers,
 	)
@@ -82,7 +82,7 @@ func (f *workloadInformer) defaultInformer(client versioned.Interface, resyncPer
 }
 
 func (f *workloadInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&metricsv1alpha1.Workload{}, f.defaultInformer)
+	return f.factory.InformerFor(&monitorv1alpha1.Workload{}, f.defaultInformer)
 }
 
 func (f *workloadInformer) Lister() v1alpha1.WorkloadLister {

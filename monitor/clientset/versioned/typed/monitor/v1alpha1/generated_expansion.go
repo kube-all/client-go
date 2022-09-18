@@ -22,4 +22,6 @@ type ClusterDashboardExpansion interface{}
 
 type ProjectArchitectureExpansion interface{}
 
+type WorkloadExpansion interface{}
+
 type WorkspaceDashboardExpansion interface{}

@@ -22,8 +22,8 @@ import (
 	"context"
 	"time"
 
-	v1alpha1 "github.com/kube-all/api/metrics/v1alpha1"
-	scheme "github.com/kube-all/client-go/metrics/clientset/versioned/scheme"
+	v1alpha1 "github.com/kube-all/api/monitor/v1alpha1"
+	scheme "github.com/kube-all/client-go/monitor/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -57,7 +57,7 @@ type workloads struct {
 }
 
 // newWorkloads returns a Workloads
-func newWorkloads(c *MetricsV1alpha1Client, namespace string) *workloads {
+func newWorkloads(c *MonitorV1alpha1Client, namespace string) *workloads {
 	return &workloads{
 		client: c.RESTClient(),
 		ns:     namespace,
